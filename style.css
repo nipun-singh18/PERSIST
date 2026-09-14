@@ -1,26 +1,145 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
     margin: 0;
-    padding: 40px;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: black;
+    overflow: hidden;
 }
 
-header {
-    margin-bottom: 80px;
+
+/* --------------------------------
+   Background particles
+-------------------------------- */
+
+#particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
 }
 
-h1 {
-    font-size: 48px;
-    margin-bottom: 10px;
+.particle {
+    position: absolute;
+    border-radius: 50%;
+
+    /* More visible than before */
+    opacity: 0.55;
+
+    filter: blur(0.5px);
+
+    will-change: transform;
+
+    transition: opacity 0.3s ease;
 }
 
-main {
-    max-width: 700px;
-    margin: auto;
+
+/* --------------------------------
+   Main homepage
+-------------------------------- */
+
+.home-container {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    z-index: 1;
 }
 
-button {
-    padding: 12px 24px;
+.hero {
+    text-align: center;
+    margin-top: -80px;
+}
+
+.hero h1 {
+    font-size: 64px;
+    margin: 0 0 12px;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-size: 20px;
+    margin: 0;
+}
+
+#animated-text {
+    font-size: 28px;
+    margin-top: 90px;
+    margin-bottom: 45px;
+}
+
+
+/* --------------------------------
+   Tagline animation
+-------------------------------- */
+
+.animated-letter {
+    display: inline-block;
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    animation: letterAppear 0.5s ease forwards;
+}
+
+@keyframes letterAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* --------------------------------
+   Buttons
+-------------------------------- */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.buttons button {
+    padding: 13px 28px;
+
     font-size: 16px;
+
+    border: none;
+    border-radius: 7px;
+
+    background-color: #eeeeee;
+    color: black;
+
     cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.buttons button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+.buttons button:active {
+    transform: translateY(0);
 }
