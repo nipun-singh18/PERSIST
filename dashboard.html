@@ -18,7 +18,10 @@
 
 <body>
 
+
+    <!-- ============================= -->
     <!-- Navigation Bar -->
+    <!-- ============================= -->
 
     <nav class="navbar">
 
@@ -28,6 +31,10 @@
 
 
         <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
 
             <a href="dashboard.html"
                class="active">
@@ -43,12 +50,17 @@
     </nav>
 
 
+
+    <!-- ============================= -->
     <!-- Main Dashboard -->
+    <!-- ============================= -->
 
     <main class="dashboard-container">
 
 
-        <!-- Welcome Section -->
+        <!-- ============================= -->
+        <!-- Welcome -->
+        <!-- ============================= -->
 
         <section class="welcome-section">
 
@@ -63,7 +75,10 @@
         </section>
 
 
+
+        <!-- ============================= -->
         <!-- Streak Cards -->
+        <!-- ============================= -->
 
         <section class="stats-section">
 
@@ -80,13 +95,14 @@
                         Current Streak
                     </p>
 
-                    <h2>
+                    <h2 id="currentStreak">
                         12 Days
                     </h2>
 
                 </div>
 
             </div>
+
 
 
             <div class="stat-card">
@@ -101,7 +117,7 @@
                         Best Streak
                     </p>
 
-                    <h2>
+                    <h2 id="bestStreak">
                         18 Days
                     </h2>
 
@@ -113,7 +129,10 @@
         </section>
 
 
+
+        <!-- ============================= -->
         <!-- Today's Activities -->
+        <!-- ============================= -->
 
         <section class="activities-section">
 
@@ -133,7 +152,10 @@
                 </div>
 
 
-                <button class="add-button">
+                <button
+                    class="add-button"
+                    id="addActivityButton"
+                    type="button">
 
                     + Add Activity
 
@@ -142,20 +164,29 @@
             </div>
 
 
+
             <!-- Activity List -->
 
-            <div class="activity-list">
+            <div
+                class="activity-list"
+                id="activityList">
 
 
-                <!-- Activity 1 -->
+                <!-- DSA Practice -->
 
                 <div class="activity-card">
 
                     <div class="activity-left">
 
-                        <button class="check-button completed">
+                        <button
+                            class="check-button completed"
+                            type="button"
+                            aria-label="Complete DSA Practice">
+
                             ✓
+
                         </button>
+
 
                         <div>
 
@@ -181,15 +212,22 @@
                 </div>
 
 
-                <!-- Activity 2 -->
+
+                <!-- Homework -->
 
                 <div class="activity-card">
 
                     <div class="activity-left">
 
-                        <button class="check-button completed">
+                        <button
+                            class="check-button completed"
+                            type="button"
+                            aria-label="Complete Homework">
+
                             ✓
+
                         </button>
+
 
                         <div>
 
@@ -215,14 +253,20 @@
                 </div>
 
 
-                <!-- Activity 3 -->
+
+                <!-- Workout -->
 
                 <div class="activity-card">
 
                     <div class="activity-left">
 
-                        <button class="check-button">
+                        <button
+                            class="check-button"
+                            type="button"
+                            aria-label="Complete Workout">
+
                         </button>
+
 
                         <div>
 
@@ -253,7 +297,10 @@
         </section>
 
 
-        <!-- Consistency Section -->
+
+        <!-- ============================= -->
+        <!-- Consistency -->
+        <!-- ============================= -->
 
         <section class="consistency-section">
 
@@ -275,14 +322,13 @@
             </div>
 
 
+
             <div class="week-container">
 
 
                 <div class="day">
 
-                    <span>
-                        Mon
-                    </span>
+                    <span>Mon</span>
 
                     <div class="day-box completed-day">
                         ✓
@@ -293,9 +339,7 @@
 
                 <div class="day">
 
-                    <span>
-                        Tue
-                    </span>
+                    <span>Tue</span>
 
                     <div class="day-box completed-day">
                         ✓
@@ -306,9 +350,7 @@
 
                 <div class="day">
 
-                    <span>
-                        Wed
-                    </span>
+                    <span>Wed</span>
 
                     <div class="day-box completed-day">
                         ✓
@@ -319,9 +361,7 @@
 
                 <div class="day">
 
-                    <span>
-                        Thu
-                    </span>
+                    <span>Thu</span>
 
                     <div class="day-box completed-day">
                         ✓
@@ -332,9 +372,7 @@
 
                 <div class="day">
 
-                    <span>
-                        Fri
-                    </span>
+                    <span>Fri</span>
 
                     <div class="day-box">
                     </div>
@@ -344,9 +382,7 @@
 
                 <div class="day">
 
-                    <span>
-                        Sat
-                    </span>
+                    <span>Sat</span>
 
                     <div class="day-box completed-day">
                         ✓
@@ -357,9 +393,7 @@
 
                 <div class="day">
 
-                    <span>
-                        Sun
-                    </span>
+                    <span>Sun</span>
 
                     <div class="day-box completed-day">
                         ✓
@@ -375,6 +409,11 @@
 
     </main>
 
+
+
+    <!-- JavaScript -->
+
+    <script src="dashboard.js"></script>
 
 </body>
 

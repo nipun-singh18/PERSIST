@@ -120,7 +120,7 @@ body {
 
 
 /* ============================= */
-/* Welcome Section */
+/* Welcome */
 /* ============================= */
 
 .welcome-section {
@@ -333,8 +333,15 @@ body {
 }
 
 
+.add-button:active {
+
+    transform: scale(0.97);
+
+}
+
+
 /* ============================= */
-/* Activity Cards */
+/* Activity List */
 /* ============================= */
 
 .activity-list {
@@ -424,6 +431,8 @@ body {
 
     border-color: #7B1E3A;
 
+    transform: scale(1.05);
+
 }
 
 
@@ -432,6 +441,26 @@ body {
     background: #7B1E3A;
 
     border-color: #7B1E3A;
+
+}
+
+
+/* ============================= */
+/* Completed Activity */
+/* ============================= */
+
+.activity-card.activity-completed h3 {
+
+    text-decoration: line-through;
+
+    color: #888;
+
+}
+
+
+.activity-card.activity-completed p {
+
+    color: #aaa;
 
 }
 
@@ -474,7 +503,7 @@ body {
 
 
 /* ============================= */
-/* Consistency Week */
+/* Consistency */
 /* ============================= */
 
 .week-container {
@@ -569,6 +598,13 @@ body {
     .nav-links {
 
         gap: 15px;
+
+    }
+
+
+    .nav-links a {
+
+        font-size: 13px;
 
     }
 
