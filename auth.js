@@ -92,9 +92,19 @@ signupForm.addEventListener(
 
         event.preventDefault();
 
-        alert(
-            "Account creation will be connected to the backend soon!"
-        );
+
+        /*
+           TEMPORARY:
+
+           Backend authentication is not
+           connected yet.
+
+           For now, after submitting the
+           form, we open the dashboard.
+        */
+
+        window.location.href =
+            "dashboard.html";
 
     }
 );
@@ -114,9 +124,19 @@ loginForm.addEventListener(
 
         event.preventDefault();
 
-        alert(
-            "Login will be connected to the backend soon!"
-        );
+
+        /*
+           TEMPORARY:
+
+           Backend authentication is not
+           connected yet.
+
+           For now, after submitting the
+           login form, we open the dashboard.
+        */
+
+        window.location.href =
+            "dashboard.html";
 
     }
 );
