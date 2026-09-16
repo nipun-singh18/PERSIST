@@ -1,3 +1,8 @@
+/* =========================================
+   PERSIST HOMEPAGE
+========================================= */
+
+
 /* --------------------------------
    Animated tagline
 -------------------------------- */
@@ -5,8 +10,10 @@
 const animatedText =
     document.getElementById("animated-text");
 
+
 const text =
     animatedText.textContent;
+
 
 animatedText.textContent = "";
 
@@ -21,19 +28,33 @@ text.split("").forEach((character, index) => {
     const span =
         document.createElement("span");
 
-    // Preserve spaces between words
+
+    /*
+       Preserve spaces between words.
+    */
+
     span.textContent =
         character === " "
             ? "\u00A0"
             : character;
 
-    span.classList.add("animated-letter");
 
-    // Delay each character slightly
+    span.classList.add(
+        "animated-letter"
+    );
+
+
+    /*
+       Delay each character slightly.
+    */
+
     span.style.animationDelay =
         `${index * 0.04}s`;
 
-    animatedText.appendChild(span);
+
+    animatedText.appendChild(
+        span
+    );
 
 });
 
@@ -43,7 +64,8 @@ text.split("").forEach((character, index) => {
 -------------------------------- */
 
 /*
-   Replay the animation every 12 seconds.
+   Replay the tagline animation
+   every 8 seconds.
 */
 
 setInterval(function () {
@@ -56,8 +78,12 @@ setInterval(function () {
 
     letters.forEach(function (letter) {
 
-        // Reset the animation
-        letter.style.animation = "none";
+        /*
+           Reset animation.
+        */
+
+        letter.style.animation =
+            "none";
 
     });
 
@@ -79,6 +105,7 @@ setInterval(function () {
         letter.style.animation =
             "letterAppear 0.5s ease forwards";
 
+
         letter.style.animationDelay =
             `${index * 0.04}s`;
 
@@ -88,37 +115,27 @@ setInterval(function () {
 
 
 /* --------------------------------
-   Button actions
+   Button Actions
 -------------------------------- */
 
-const getStartedButton =
-    document.getElementById("getStartedButton");
+/*
+   The buttons use onclick directly
+   in index.html to navigate.
 
-getStartedButton.addEventListener(
-    "click",
-    function () {
+   We do NOT add alert messages here.
 
-        alert("Welcome to PERSIST!");
+   Get Started
+       ↓
+   auth.html
 
-    }
-);
-
-
-const loginButton =
-    document.getElementById("loginButton");
-
-loginButton.addEventListener(
-    "click",
-    function () {
-
-        alert("Login page coming soon!");
-
-    }
-);
+   Login
+       ↓
+   auth.html?mode=login
+*/
 
 
 /* --------------------------------
-   Floating background particles
+   Floating Background Particles
 -------------------------------- */
 
 const particlesContainer =
@@ -159,7 +176,7 @@ const numberOfParticles = 28;
 
 
 /* --------------------------------
-   Create particles
+   Create Particles
 -------------------------------- */
 
 for (
@@ -171,22 +188,31 @@ for (
     const particle =
         document.createElement("div");
 
-    particle.classList.add("particle");
+
+    particle.classList.add(
+        "particle"
+    );
 
 
-    /* Random size */
+    /*
+       Random size.
+    */
 
     const size =
         9 + Math.random() * 13;
 
+
     particle.style.width =
         `${size}px`;
+
 
     particle.style.height =
         `${size}px`;
 
 
-    /* Random color */
+    /*
+       Random color.
+    */
 
     const randomColor =
         particleColors[
@@ -195,6 +221,7 @@ for (
                 particleColors.length
             )
         ];
+
 
     particle.style.backgroundColor =
         randomColor;
@@ -208,6 +235,7 @@ for (
         Math.random() *
         window.innerWidth;
 
+
     const startY =
         Math.random() *
         window.innerHeight;
@@ -215,6 +243,7 @@ for (
 
     particle.style.left =
         `${startX}px`;
+
 
     particle.style.top =
         `${startY}px`;
@@ -229,15 +258,19 @@ for (
         element: particle,
 
         x: startX,
+
         y: startY,
 
         originalX: startX,
+
         originalY: startY,
 
         targetX: startX,
+
         targetY: startY,
 
         velocityX: 0,
+
         velocityY: 0,
 
         phase:
@@ -261,14 +294,16 @@ for (
 
 
 /* --------------------------------
-   Mouse position
+   Mouse Position
 -------------------------------- */
 
 let mouseX =
     window.innerWidth / 2;
 
+
 let mouseY =
     window.innerHeight / 2;
+
 
 let mouseActive = false;
 
@@ -277,8 +312,11 @@ document.addEventListener(
     "mousemove",
     function (event) {
 
-        mouseX = event.clientX;
-        mouseY = event.clientY;
+        mouseX =
+            event.clientX;
+
+        mouseY =
+            event.clientY;
 
         mouseActive = true;
 
@@ -287,7 +325,7 @@ document.addEventListener(
 
 
 /* --------------------------------
-   Detect when mouse leaves page
+   Detect When Mouse Leaves Page
 -------------------------------- */
 
 document.addEventListener(
@@ -301,146 +339,159 @@ document.addEventListener(
 
 
 /* --------------------------------
-   Particle animation
+   Particle Animation
 -------------------------------- */
 
 function animateParticles(time) {
 
-    particles.forEach(function (particle) {
+    particles.forEach(
+        function (particle) {
 
 
-        /*
-           Gentle natural movement.
-        */
+            /*
+               Gentle natural movement.
+            */
 
-        const gentleX =
-            Math.sin(
-                time *
-                particle.speed +
-                particle.phase
-            ) * 12;
-
-        const gentleY =
-            Math.cos(
-                time *
-                particle.speed +
-                particle.phase
-            ) * 12;
+            const gentleX =
+                Math.sin(
+                    time *
+                    particle.speed +
+                    particle.phase
+                ) * 12;
 
 
-        particle.targetX =
-            particle.originalX +
-            gentleX;
-
-        particle.targetY =
-            particle.originalY +
-            gentleY;
-
-
-        /* --------------------------------
-           Cursor interaction
-        -------------------------------- */
-
-        if (mouseActive) {
-
-            const dx =
-                mouseX -
-                particle.x;
-
-            const dy =
-                mouseY -
-                particle.y;
+            const gentleY =
+                Math.cos(
+                    time *
+                    particle.speed +
+                    particle.phase
+                ) * 12;
 
 
-            const distance =
-                Math.sqrt(
-                    dx * dx +
-                    dy * dy
-                );
+            particle.targetX =
+                particle.originalX +
+                gentleX;
 
 
-            const influenceRadius = 350;
+            particle.targetY =
+                particle.originalY +
+                gentleY;
 
 
-            if (
-                distance <
-                influenceRadius
-            ) {
+            /* -----------------------------
+               Cursor Interaction
+            ----------------------------- */
 
-                const influence =
-                    1 -
-                    distance /
-                    influenceRadius;
+            if (mouseActive) {
+
+                const dx =
+                    mouseX -
+                    particle.x;
 
 
-                /*
-                   Stronger movement
-                   when cursor is closer.
-                */
+                const dy =
+                    mouseY -
+                    particle.y;
 
-                particle.targetX +=
-                    dx *
-                    influence *
-                    0.55;
 
-                particle.targetY +=
-                    dy *
-                    influence *
-                    0.55;
+                const distance =
+                    Math.sqrt(
+                        dx * dx +
+                        dy * dy
+                    );
+
+
+                const influenceRadius =
+                    350;
+
+
+                if (
+                    distance <
+                    influenceRadius
+                ) {
+
+                    const influence =
+                        1 -
+                        distance /
+                        influenceRadius;
+
+
+                    /*
+                       Stronger movement
+                       when cursor is closer.
+                    */
+
+                    particle.targetX +=
+                        dx *
+                        influence *
+                        0.55;
+
+
+                    particle.targetY +=
+                        dy *
+                        influence *
+                        0.55;
+
+                }
 
             }
 
+
+            /* -----------------------------
+               Smooth Movement
+            ----------------------------- */
+
+            particle.velocityX +=
+                (
+                    particle.targetX -
+                    particle.x
+                ) * 0.025;
+
+
+            particle.velocityY +=
+                (
+                    particle.targetY -
+                    particle.y
+                ) * 0.025;
+
+
+            /*
+               Friction keeps movement smooth.
+            */
+
+            particle.velocityX *=
+                0.88;
+
+
+            particle.velocityY *=
+                0.88;
+
+
+            /*
+               Update position.
+            */
+
+            particle.x +=
+                particle.velocityX;
+
+
+            particle.y +=
+                particle.velocityY;
+
+
+            /* -----------------------------
+               Move Particle
+            ----------------------------- */
+
+            particle.element.style.transform =
+                `translate3d(
+                    ${particle.x - particle.originalX}px,
+                    ${particle.y - particle.originalY}px,
+                    0
+                )`;
+
         }
-
-
-        /* --------------------------------
-           Smooth movement
-        -------------------------------- */
-
-        particle.velocityX +=
-            (
-                particle.targetX -
-                particle.x
-            ) * 0.025;
-
-        particle.velocityY +=
-            (
-                particle.targetY -
-                particle.y
-            ) * 0.025;
-
-
-        /*
-           Friction keeps movement smooth.
-        */
-
-        particle.velocityX *= 0.88;
-        particle.velocityY *= 0.88;
-
-
-        /* --------------------------------
-           Update position
-        -------------------------------- */
-
-        particle.x +=
-            particle.velocityX;
-
-        particle.y +=
-            particle.velocityY;
-
-
-        /* --------------------------------
-           Move particle
-        -------------------------------- */
-
-        particle.element.style.transform =
-            `translate3d(
-                ${particle.x - particle.originalX}px,
-                ${particle.y - particle.originalY}px,
-                0
-            )`;
-
-    });
+    );
 
 
     requestAnimationFrame(
@@ -456,7 +507,7 @@ requestAnimationFrame(
 
 
 /* --------------------------------
-   Handle window resizing
+   Handle Window Resizing
 -------------------------------- */
 
 window.addEventListener(

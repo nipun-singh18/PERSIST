@@ -7,57 +7,127 @@
    ACTIVITY CHECKBOXES
 ========================================= */
 
-const checkButtons =
-    document.querySelectorAll(".check-button");
+function setupCheckButton(button) {
+
+    button.addEventListener(
+        "click",
+        function () {
+
+            button.classList.toggle(
+                "completed"
+            );
 
 
-checkButtons.forEach(
-    function (button) {
-
-        button.addEventListener(
-            "click",
-            function () {
-
-                const activityCard =
-                    button.closest(
-                        ".activity-card"
-                    );
-
-
-                /* Toggle completed state */
-
-                button.classList.toggle(
+            if (
+                button.classList.contains(
                     "completed"
+                )
+            ) {
+
+                button.textContent = "✓";
+
+            }
+
+            else {
+
+                button.textContent = "";
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   REMOVE BUTTON
+========================================= */
+
+function setupRemoveButton(button) {
+
+    button.addEventListener(
+        "click",
+        function () {
+
+            const activityCard =
+                button.closest(
+                    ".activity-card"
                 );
 
 
-                /* Add/remove check mark */
+            if (!activityCard) {
 
-                if (
-                    button.classList.contains(
-                        "completed"
-                    )
-                ) {
-
-                    button.textContent = "✓";
-
-                    activityCard.classList.add(
-                        "activity-completed"
-                    );
-
-                }
-
-                else {
-
-                    button.textContent = "";
-
-                    activityCard.classList.remove(
-                        "activity-completed"
-                    );
-
-                }
+                return;
 
             }
+
+
+            const activityName =
+                activityCard.querySelector(
+                    "h3"
+                ).textContent;
+
+
+            const confirmRemove =
+                confirm(
+                    `Remove "${activityName}" from your activities?`
+                );
+
+
+            if (confirmRemove) {
+
+                activityCard.remove();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   SETUP EXISTING ACTIVITIES
+========================================= */
+
+function setupActivity(activityCard) {
+
+    const checkButton =
+        activityCard.querySelector(
+            ".check-button"
+        );
+
+
+    const removeButton =
+        activityCard.querySelector(
+            ".remove-button"
+        );
+
+
+    setupCheckButton(
+        checkButton
+    );
+
+
+    setupRemoveButton(
+        removeButton
+    );
+
+}
+
+
+const existingActivities =
+    document.querySelectorAll(
+        ".activity-card"
+    );
+
+
+existingActivities.forEach(
+    function (activityCard) {
+
+        setupActivity(
+            activityCard
         );
 
     }
@@ -91,8 +161,6 @@ addActivityButton.addEventListener(
             );
 
 
-        /* If user presses Cancel */
-
         if (
             activityName === null
         ) {
@@ -102,13 +170,9 @@ addActivityButton.addEventListener(
         }
 
 
-        /* Remove unnecessary spaces */
-
         const cleanName =
             activityName.trim();
 
-
-        /* Don't create an empty activity */
 
         if (
             cleanName === ""
@@ -123,7 +187,9 @@ addActivityButton.addEventListener(
         }
 
 
-        /* Create activity card */
+        /* =============================
+           Create Activity Card
+        ============================= */
 
         const activityCard =
             document.createElement(
@@ -136,93 +202,178 @@ addActivityButton.addEventListener(
         );
 
 
-        activityCard.innerHTML = `
+        /* =============================
+           Left Side
+        ============================= */
 
-            <div class="activity-left">
-
-                <button
-                    class="check-button"
-                    type="button"
-                    aria-label="Complete activity">
-
-                </button>
+        const activityLeft =
+            document.createElement(
+                "div"
+            );
 
 
-                <div>
-
-                    <h3>
-                        ${cleanName}
-                    </h3>
-
-                    <p>
-                        Complete today's activity
-                    </p>
-
-                </div>
-
-            </div>
+        activityLeft.classList.add(
+            "activity-left"
+        );
 
 
-            <div class="activity-streak">
+        /* =============================
+           Check Button
+        ============================= */
 
-                🔥 0 days
+        const checkButton =
+            document.createElement(
+                "button"
+            );
 
-            </div>
 
-        `;
+        checkButton.classList.add(
+            "check-button"
+        );
 
 
-        /* Add new card to page */
+        checkButton.type =
+            "button";
+
+
+        checkButton.setAttribute(
+            "aria-label",
+            `Complete ${cleanName}`
+        );
+
+
+        /* =============================
+           Activity Text
+        ============================= */
+
+        const textContainer =
+            document.createElement(
+                "div"
+            );
+
+
+        const title =
+            document.createElement(
+                "h3"
+            );
+
+
+        title.textContent =
+            cleanName;
+
+
+        const description =
+            document.createElement(
+                "p"
+            );
+
+
+        description.textContent =
+            "Complete today's activity";
+
+
+        textContainer.appendChild(
+            title
+        );
+
+
+        textContainer.appendChild(
+            description
+        );
+
+
+        activityLeft.appendChild(
+            checkButton
+        );
+
+
+        activityLeft.appendChild(
+            textContainer
+        );
+
+
+        /* =============================
+           Right Side
+        ============================= */
+
+        const activityRight =
+            document.createElement(
+                "div"
+            );
+
+
+        activityRight.classList.add(
+            "activity-right"
+        );
+
+
+        const streak =
+            document.createElement(
+                "div"
+            );
+
+
+        streak.classList.add(
+            "activity-streak"
+        );
+
+
+        streak.textContent =
+            "🔥 0 days";
+
+
+        const removeButton =
+            document.createElement(
+                "button"
+            );
+
+
+        removeButton.classList.add(
+            "remove-button"
+        );
+
+
+        removeButton.type =
+            "button";
+
+
+        removeButton.textContent =
+            "Remove";
+
+
+        activityRight.appendChild(
+            streak
+        );
+
+
+        activityRight.appendChild(
+            removeButton
+        );
+
+
+        /* =============================
+           Put Everything Together
+        ============================= */
+
+        activityCard.appendChild(
+            activityLeft
+        );
+
+
+        activityCard.appendChild(
+            activityRight
+        );
+
 
         activityList.appendChild(
             activityCard
         );
 
 
-        /* Make its checkbox work */
+        /* Make buttons work */
 
-        const newCheckButton =
-            activityCard.querySelector(
-                ".check-button"
-            );
-
-
-        newCheckButton.addEventListener(
-            "click",
-            function () {
-
-                newCheckButton.classList.toggle(
-                    "completed"
-                );
-
-
-                if (
-                    newCheckButton.classList.contains(
-                        "completed"
-                    )
-                ) {
-
-                    newCheckButton.textContent =
-                        "✓";
-
-                    activityCard.classList.add(
-                        "activity-completed"
-                    );
-
-                }
-
-                else {
-
-                    newCheckButton.textContent =
-                        "";
-
-                    activityCard.classList.remove(
-                        "activity-completed"
-                    );
-
-                }
-
-            }
+        setupActivity(
+            activityCard
         );
 
     }

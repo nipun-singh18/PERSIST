@@ -27,7 +27,7 @@ body {
 
 
 /* ============================= */
-/* Navigation Bar */
+/* Navigation */
 /* ============================= */
 
 .navbar {
@@ -49,8 +49,6 @@ body {
 }
 
 
-/* Logo */
-
 .logo {
 
     font-size: 24px;
@@ -63,8 +61,6 @@ body {
 
 }
 
-
-/* Navigation Links */
 
 .nav-links {
 
@@ -105,7 +101,7 @@ body {
 
 
 /* ============================= */
-/* Dashboard Container */
+/* Dashboard */
 /* ============================= */
 
 .dashboard-container {
@@ -135,8 +131,6 @@ body {
     font-size: 32px;
 
     margin-bottom: 8px;
-
-    color: #222;
 
 }
 
@@ -241,7 +235,7 @@ body {
 
 
 /* ============================= */
-/* Common Section */
+/* Sections */
 /* ============================= */
 
 .activities-section,
@@ -298,7 +292,7 @@ body {
 
 
 /* ============================= */
-/* Add Activity Button */
+/* Add Activity */
 /* ============================= */
 
 .add-button {
@@ -424,6 +418,8 @@ body {
 
     transition: 0.2s ease;
 
+    flex-shrink: 0;
+
 }
 
 
@@ -441,26 +437,6 @@ body {
     background: #7B1E3A;
 
     border-color: #7B1E3A;
-
-}
-
-
-/* ============================= */
-/* Completed Activity */
-/* ============================= */
-
-.activity-card.activity-completed h3 {
-
-    text-decoration: line-through;
-
-    color: #888;
-
-}
-
-
-.activity-card.activity-completed p {
-
-    color: #aaa;
 
 }
 
@@ -488,8 +464,19 @@ body {
 
 
 /* ============================= */
-/* Activity Streak */
+/* Activity Right Side */
 /* ============================= */
+
+.activity-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
 
 .activity-streak {
 
@@ -498,6 +485,38 @@ body {
     color: #777;
 
     font-weight: 600;
+
+    white-space: nowrap;
+
+}
+
+
+/* ============================= */
+/* Remove Activity */
+/* ============================= */
+
+.remove-button {
+
+    border: none;
+
+    background: transparent;
+
+    color: #999;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+.remove-button:hover {
+
+    color: #C2185B;
 
 }
 
@@ -567,8 +586,6 @@ body {
 
     font-size: 18px;
 
-    transition: 0.2s ease;
-
 }
 
 
@@ -587,7 +604,6 @@ body {
 
 @media (max-width: 700px) {
 
-
     .navbar {
 
         padding: 0 5%;
@@ -597,14 +613,14 @@ body {
 
     .nav-links {
 
-        gap: 15px;
+        gap: 12px;
 
     }
 
 
     .nav-links a {
 
-        font-size: 13px;
+        font-size: 12px;
 
     }
 
@@ -667,11 +683,13 @@ body {
     }
 
 
-    .activity-streak {
+    .activity-right {
 
-        font-size: 12px;
+        flex-direction: column;
 
-        white-space: nowrap;
+        align-items: flex-end;
+
+        gap: 8px;
 
     }
 

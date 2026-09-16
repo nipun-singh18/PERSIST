@@ -3,6 +3,10 @@
 ========================================= */
 
 
+/* =========================================
+   AUTH BOX
+========================================= */
+
 const authBox =
     document.querySelector(".auth-box");
 
@@ -27,6 +31,9 @@ const showSignup =
 
    In that case we immediately show
    the Login form.
+
+   If there is no mode parameter,
+   Create Account is shown by default.
 */
 
 const urlParams =
@@ -94,13 +101,24 @@ signupForm.addEventListener(
 
 
         /*
-           TEMPORARY:
+           TEMPORARY LOGIN SYSTEM
 
            Backend authentication is not
            connected yet.
 
-           For now, after submitting the
-           form, we open the dashboard.
+           For now, we remember that the
+           user has successfully created
+           an account.
+        */
+
+        localStorage.setItem(
+            "persistLoggedIn",
+            "true"
+        );
+
+
+        /*
+           Open the dashboard.
         */
 
         window.location.href =
@@ -126,13 +144,23 @@ loginForm.addEventListener(
 
 
         /*
-           TEMPORARY:
+           TEMPORARY LOGIN SYSTEM
 
            Backend authentication is not
            connected yet.
 
-           For now, after submitting the
-           login form, we open the dashboard.
+           For now, we remember that the
+           user has successfully logged in.
+        */
+
+        localStorage.setItem(
+            "persistLoggedIn",
+            "true"
+        );
+
+
+        /*
+           Open the dashboard.
         */
 
         window.location.href =
