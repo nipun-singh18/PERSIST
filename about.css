@@ -1,0 +1,710 @@
+/* ============================= */
+/* General Reset */
+/* ============================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ============================= */
+/* Body */
+/* ============================= */
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f8f8fa;
+
+    color: #222;
+
+    min-height: 100vh;
+
+}
+
+
+/* ============================= */
+/* Navigation */
+/* ============================= */
+
+.navbar {
+
+    height: 70px;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    border-bottom: 1px solid #eeeeee;
+
+}
+
+
+.logo {
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: #7B1E3A;
+
+}
+
+
+.nav-links {
+
+    display: flex;
+
+    gap: 30px;
+
+}
+
+
+.nav-links a {
+
+    text-decoration: none;
+
+    color: #666;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: 0.25s ease;
+
+}
+
+
+.nav-links a:hover {
+
+    color: #9C1C4A;
+
+}
+
+
+.nav-links a.active {
+
+    color: #7B1E3A;
+
+}
+
+
+/* ============================= */
+/* Main Container */
+/* ============================= */
+
+.about-container {
+
+    width: 86%;
+
+    max-width: 1000px;
+
+    margin: 55px auto 60px;
+
+}
+
+
+/* ============================= */
+/* About Hero */
+/* ============================= */
+
+.about-hero {
+
+    text-align: center;
+
+    margin-bottom: 45px;
+
+}
+
+
+.small-heading {
+
+    color: #9C1C4A;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.about-hero h1 {
+
+    max-width: 750px;
+
+    margin: 0 auto 18px;
+
+    font-size: 42px;
+
+    line-height: 1.2;
+
+    letter-spacing: -1px;
+
+}
+
+
+.about-hero h1 span {
+
+    color: #7B1E3A;
+
+}
+
+
+.hero-description {
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    color: #777;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+}
+
+
+/* ============================= */
+/* About Cards */
+/* ============================= */
+
+.about-card {
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 32px;
+
+    margin-bottom: 25px;
+
+    border: 1px solid #eeeeee;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.035);
+
+}
+
+
+/* ============================= */
+/* Section Heading */
+/* ============================= */
+
+.section-heading {
+
+    margin-bottom: 22px;
+
+}
+
+
+.section-heading h2 {
+
+    font-size: 25px;
+
+    margin-bottom: 5px;
+
+}
+
+
+/* ============================= */
+/* Section Text */
+/* ============================= */
+
+.section-text {
+
+    color: #666;
+
+    font-size: 15px;
+
+    line-height: 1.75;
+
+    margin-bottom: 13px;
+
+}
+
+
+.section-text:last-child {
+
+    margin-bottom: 0;
+
+}
+
+
+/* ============================= */
+/* Creator Card */
+/* ============================= */
+
+.creator-card {
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 35px;
+
+    margin-bottom: 25px;
+
+    border: 1px solid #eeeeee;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.035);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+}
+
+
+.creator-avatar {
+
+    width: 105px;
+
+    height: 105px;
+
+    border-radius: 50%;
+
+    background: #7B1E3A;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 30px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    flex-shrink: 0;
+
+}
+
+
+.creator-content {
+
+    flex: 1;
+
+}
+
+
+.creator-content h2 {
+
+    font-size: 28px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.creator-role {
+
+    color: #7B1E3A;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    margin-bottom: 18px;
+
+}
+
+
+.creator-description {
+
+    color: #666;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    margin-bottom: 12px;
+
+}
+
+
+/* ============================= */
+/* Creator Motto */
+/* ============================= */
+
+.creator-motto {
+
+    display: inline-block;
+
+    margin-top: 5px;
+
+    padding: 10px 16px;
+
+    border-radius: 9px;
+
+    background: #f9e9ef;
+
+    color: #7B1E3A;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* ============================= */
+/* Feature Grid */
+/* ============================= */
+
+.feature-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+
+}
+
+
+.feature-item {
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 13px;
+
+    padding: 22px;
+
+    transition: 0.25s ease;
+
+}
+
+
+.feature-item:hover {
+
+    border-color: #d9a5b8;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 7px 20px rgba(0, 0, 0, 0.04);
+
+}
+
+
+.feature-number {
+
+    color: #9C1C4A;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 13px;
+
+}
+
+
+.feature-item h3 {
+
+    font-size: 17px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.feature-item p {
+
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ============================= */
+/* Quote Card */
+/* ============================= */
+
+.quote-card {
+
+    background: #7B1E3A;
+
+    color: white;
+
+    border-radius: 18px;
+
+    padding: 35px;
+
+    margin-bottom: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 25px rgba(123, 30, 58, 0.12);
+
+}
+
+
+.quote-mark {
+
+    font-size: 52px;
+
+    line-height: 35px;
+
+    opacity: 0.7;
+
+    margin-bottom: 18px;
+
+}
+
+
+.quote {
+
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    font-size: 19px;
+
+    line-height: 1.7;
+
+    font-weight: 600;
+
+}
+
+
+.quote-author {
+
+    margin-top: 15px;
+
+    font-size: 13px;
+
+    opacity: 0.75;
+
+}
+
+
+/* ============================= */
+/* Future Section */
+/* ============================= */
+
+.future-card {
+
+    text-align: center;
+
+}
+
+
+.future-card .section-text {
+
+    max-width: 760px;
+
+    margin-left: auto;
+
+    margin-right: auto;
+
+}
+
+
+.future-line {
+
+    margin-top: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    color: #7B1E3A;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+}
+
+
+.future-line span {
+
+    width: 55px;
+
+    height: 1px;
+
+    background: #d9a5b8;
+
+}
+
+
+/* ============================= */
+/* Mobile */
+/* ============================= */
+
+@media (max-width: 700px) {
+
+
+    .navbar {
+
+        padding: 0 5%;
+
+    }
+
+
+    .nav-links {
+
+        gap: 12px;
+
+    }
+
+
+    .nav-links a {
+
+        font-size: 12px;
+
+    }
+
+
+    .about-container {
+
+        width: 92%;
+
+        margin: 35px auto 45px;
+
+    }
+
+
+    .about-hero {
+
+        margin-bottom: 30px;
+
+    }
+
+
+    .about-hero h1 {
+
+        font-size: 31px;
+
+        letter-spacing: -0.5px;
+
+    }
+
+
+    .hero-description {
+
+        font-size: 14px;
+
+    }
+
+
+    .about-card {
+
+        padding: 22px;
+
+    }
+
+
+    .section-heading h2 {
+
+        font-size: 22px;
+
+    }
+
+
+    .creator-card {
+
+        padding: 25px 22px;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+
+        gap: 20px;
+
+    }
+
+
+    .creator-avatar {
+
+        width: 85px;
+
+        height: 85px;
+
+        font-size: 25px;
+
+    }
+
+
+    .creator-content h2 {
+
+        font-size: 25px;
+
+    }
+
+
+    .feature-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .quote-card {
+
+        padding: 28px 22px;
+
+    }
+
+
+    .quote {
+
+        font-size: 17px;
+
+    }
+
+
+    .future-line {
+
+        gap: 10px;
+
+    }
+
+
+    .future-line span {
+
+        width: 30px;
+
+    }
+
+}
