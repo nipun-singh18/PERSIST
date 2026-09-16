@@ -24,16 +24,15 @@ const showSignup =
 ========================================= */
 
 /*
-   If the user clicked Login on the
-   homepage, the URL will contain:
+   If the URL contains:
 
    ?mode=login
 
-   In that case we immediately show
-   the Login form.
+   → Login form opens.
 
-   If there is no mode parameter,
-   Create Account is shown by default.
+   Otherwise:
+
+   → Create Account opens.
 */
 
 const urlParams =
@@ -101,14 +100,12 @@ signupForm.addEventListener(
 
 
         /*
-           TEMPORARY LOGIN SYSTEM
+           TEMPORARY AUTHENTICATION
 
-           Backend authentication is not
-           connected yet.
+           Backend is not connected yet.
 
-           For now, we remember that the
-           user has successfully created
-           an account.
+           For now we mark the user
+           as logged in.
         */
 
         localStorage.setItem(
@@ -118,7 +115,7 @@ signupForm.addEventListener(
 
 
         /*
-           Open the dashboard.
+           Go to Dashboard.
         */
 
         window.location.href =
@@ -144,13 +141,12 @@ loginForm.addEventListener(
 
 
         /*
-           TEMPORARY LOGIN SYSTEM
+           TEMPORARY AUTHENTICATION
 
-           Backend authentication is not
-           connected yet.
+           Backend is not connected yet.
 
-           For now, we remember that the
-           user has successfully logged in.
+           For now we mark the user
+           as logged in.
         */
 
         localStorage.setItem(
@@ -160,7 +156,7 @@ loginForm.addEventListener(
 
 
         /*
-           Open the dashboard.
+           Go to Dashboard.
         */
 
         window.location.href =

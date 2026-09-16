@@ -3,9 +3,9 @@
 ========================================= */
 
 
-/* --------------------------------
-   Animated tagline
--------------------------------- */
+/* =========================================
+   ANIMATED TAGLINE
+========================================= */
 
 const animatedText =
     document.getElementById("animated-text");
@@ -19,8 +19,8 @@ animatedText.textContent = "";
 
 
 /*
-   Create each character separately
-   so every character can animate.
+   Create every character separately
+   so that each character can animate.
 */
 
 text.split("").forEach((character, index) => {
@@ -45,7 +45,7 @@ text.split("").forEach((character, index) => {
 
 
     /*
-       Delay each character slightly.
+       Small delay between characters.
     */
 
     span.style.animationDelay =
@@ -59,13 +59,12 @@ text.split("").forEach((character, index) => {
 });
 
 
-/* --------------------------------
-   Repeat tagline animation
--------------------------------- */
+/* =========================================
+   REPEAT TAGLINE ANIMATION
+========================================= */
 
 /*
-   Replay the tagline animation
-   every 8 seconds.
+   Replay the animation every 8 seconds.
 */
 
 setInterval(function () {
@@ -78,10 +77,6 @@ setInterval(function () {
 
     letters.forEach(function (letter) {
 
-        /*
-           Reset animation.
-        */
-
         letter.style.animation =
             "none";
 
@@ -89,7 +84,7 @@ setInterval(function () {
 
 
     /*
-       Force the browser to recognize
+       Force browser to recognize
        the animation reset.
     */
 
@@ -97,7 +92,7 @@ setInterval(function () {
 
 
     /*
-       Start the animation again.
+       Start animation again.
     */
 
     letters.forEach(function (letter, index) {
@@ -114,43 +109,43 @@ setInterval(function () {
 }, 8000);
 
 
-/* --------------------------------
-   Button Actions
--------------------------------- */
+/* =========================================
+   BUTTON NAVIGATION
+========================================= */
 
 /*
-   The buttons use onclick directly
-   in index.html to navigate.
-
-   We do NOT add alert messages here.
-
-   Get Started
-       ↓
-   auth.html
-
-   Login
-       ↓
-   auth.html?mode=login
+   GET STARTED ALWAYS OPENS
+   THE CREATE ACCOUNT PAGE.
 */
 
+function goToGetStarted() {
 
-/* --------------------------------
-   Floating Background Particles
--------------------------------- */
+    window.location.href =
+        "auth.html?mode=signup";
+
+}
+
+
+/*
+   LOGIN ALWAYS OPENS
+   THE LOGIN PAGE.
+*/
+
+function goToLogin() {
+
+    window.location.href =
+        "auth.html?mode=login";
+
+}
+
+
+/* =========================================
+   FLOATING BACKGROUND PARTICLES
+========================================= */
 
 const particlesContainer =
     document.getElementById("particles");
 
-
-/*
-   Color palette:
-
-   Maroon
-   Red
-   Pink
-   Magenta
-   Purple
-*/
 
 const particleColors = [
 
@@ -168,16 +163,12 @@ const particleColors = [
 const particles = [];
 
 
-/*
-   28 floating particles.
-*/
-
 const numberOfParticles = 28;
 
 
-/* --------------------------------
-   Create Particles
--------------------------------- */
+/* =========================================
+   CREATE PARTICLES
+========================================= */
 
 for (
     let i = 0;
@@ -195,7 +186,7 @@ for (
 
 
     /*
-       Random size.
+       Random particle size.
     */
 
     const size =
@@ -211,7 +202,7 @@ for (
 
 
     /*
-       Random color.
+       Random particle color.
     */
 
     const randomColor =
@@ -293,9 +284,9 @@ for (
 }
 
 
-/* --------------------------------
-   Mouse Position
--------------------------------- */
+/* =========================================
+   MOUSE POSITION
+========================================= */
 
 let mouseX =
     window.innerWidth / 2;
@@ -324,9 +315,9 @@ document.addEventListener(
 );
 
 
-/* --------------------------------
-   Detect When Mouse Leaves Page
--------------------------------- */
+/* =========================================
+   MOUSE LEAVES PAGE
+========================================= */
 
 document.addEventListener(
     "mouseleave",
@@ -338,9 +329,9 @@ document.addEventListener(
 );
 
 
-/* --------------------------------
-   Particle Animation
--------------------------------- */
+/* =========================================
+   PARTICLE ANIMATION
+========================================= */
 
 function animateParticles(time) {
 
@@ -379,7 +370,7 @@ function animateParticles(time) {
 
 
             /* -----------------------------
-               Cursor Interaction
+               Cursor interaction
             ----------------------------- */
 
             if (mouseActive) {
@@ -416,11 +407,6 @@ function animateParticles(time) {
                         influenceRadius;
 
 
-                    /*
-                       Stronger movement
-                       when cursor is closer.
-                    */
-
                     particle.targetX +=
                         dx *
                         influence *
@@ -438,7 +424,7 @@ function animateParticles(time) {
 
 
             /* -----------------------------
-               Smooth Movement
+               Smooth movement
             ----------------------------- */
 
             particle.velocityX +=
@@ -456,7 +442,7 @@ function animateParticles(time) {
 
 
             /*
-               Friction keeps movement smooth.
+               Friction.
             */
 
             particle.velocityX *=
@@ -479,9 +465,9 @@ function animateParticles(time) {
                 particle.velocityY;
 
 
-            /* -----------------------------
-               Move Particle
-            ----------------------------- */
+            /*
+               Move particle.
+            */
 
             particle.element.style.transform =
                 `translate3d(
@@ -506,9 +492,9 @@ requestAnimationFrame(
 );
 
 
-/* --------------------------------
-   Handle Window Resizing
--------------------------------- */
+/* =========================================
+   WINDOW RESIZE
+========================================= */
 
 window.addEventListener(
     "resize",
