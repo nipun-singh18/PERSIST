@@ -57,45 +57,32 @@
 
         <section class="stats-section">
 
-
             <div class="stat-card">
-
                 <div class="stat-icon">🔥</div>
-
                 <div>
                     <p class="stat-title">Current Streak</p>
                     <h2 id="currentStreak">0 Days</h2>
                     <p class="stat-subtitle" id="currentStreakActivity">No activities yet</p>
                 </div>
-
             </div>
 
-
             <div class="stat-card">
-
                 <div class="stat-icon">🏆</div>
-
                 <div>
                     <p class="stat-title">Best Streak</p>
                     <h2 id="bestStreak">0 Days</h2>
                     <p class="stat-subtitle" id="bestStreakActivity">No activities yet</p>
                 </div>
-
             </div>
 
-
             <div class="stat-card">
-
                 <div class="stat-icon">✅</div>
-
                 <div>
                     <p class="stat-title">Today's Progress</p>
                     <h2 id="todayProgress">0/0</h2>
                     <p class="stat-subtitle">Activities completed today</p>
                 </div>
-
             </div>
-
 
         </section>
 
@@ -108,7 +95,6 @@
         <section class="activities-section">
 
             <div class="section-header">
-
                 <div>
                     <h2>Today's Activities</h2>
                     <p>Stay consistent with your goals.</p>
@@ -117,15 +103,7 @@
                 <button class="add-button" id="addActivityButton" type="button">
                     + Add Activity
                 </button>
-
             </div>
-
-
-            <!--
-                Activity cards are rendered entirely by dashboard.js
-                from persistActivities in localStorage.
-                This container starts empty on purpose.
-            -->
 
             <div class="activity-list" id="activityList"></div>
 
@@ -146,9 +124,7 @@
                 </div>
             </div>
 
-
             <div class="week-container">
-
                 <div class="day"><span>Mon</span><div class="day-box"></div></div>
                 <div class="day"><span>Tue</span><div class="day-box"></div></div>
                 <div class="day"><span>Wed</span><div class="day-box"></div></div>
@@ -156,7 +132,6 @@
                 <div class="day"><span>Fri</span><div class="day-box"></div></div>
                 <div class="day"><span>Sat</span><div class="day-box"></div></div>
                 <div class="day"><span>Sun</span><div class="day-box"></div></div>
-
             </div>
 
         </section>
@@ -165,6 +140,11 @@
     </main>
 
 
+    <!--
+        streaks.js MUST load before dashboard.js —
+        dashboard.js depends on the functions it defines.
+    -->
+    <script src="streaks.js"></script>
     <script src="dashboard.js"></script>
 
 </body>

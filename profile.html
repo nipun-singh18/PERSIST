@@ -179,6 +179,11 @@
     </main>
 
 
+    <!--
+        streaks.js MUST load before profile.js —
+        profile.js depends on the functions it defines.
+    -->
+    <script src="streaks.js"></script>
     <script src="profile.js"></script>
 
 </body>

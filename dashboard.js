@@ -1,122 +1,19 @@
 /* =========================================
    PERSIST DASHBOARD
+
+   Date helpers, streak calculation, and
+   data access (loadActivities, saveActivities,
+   loadUser) now live in streaks.js, loaded
+   before this file.
 ========================================= */
 
 
 /* =========================================
    ROUTE GUARD
-   If nobody is logged in, don't let them
-   see the dashboard at all.
 ========================================= */
 
 if (localStorage.getItem("persistLoggedIn") !== "true") {
     window.location.href = "auth.html?mode=login";
-}
-
-
-/* =========================================
-   DATE HELPERS
-========================================= */
-
-function todayString() {
-    return new Date().toISOString().split("T")[0];
-}
-
-function parseDate(dateStr) {
-    const [year, month, day] = dateStr.split("-").map(Number);
-    return new Date(year, month - 1, day);
-}
-
-function daysBetween(dateStrA, dateStrB) {
-    const msPerDay = 1000 * 60 * 60 * 24;
-    const a = parseDate(dateStrA);
-    const b = parseDate(dateStrB);
-    return Math.round((b - a) / msPerDay);
-}
-
-
-/* =========================================
-   STREAK CALCULATION
-   (the core algorithm of the whole project)
-========================================= */
-
-function calculateStreaks(completions) {
-
-    if (!completions || completions.length === 0) {
-        return { current: 0, best: 0 };
-    }
-
-    const sortedDates =
-        [...new Set(completions)].sort();
-
-    /* ---------- BEST STREAK ---------- */
-
-    let best = 1;
-    let run = 1;
-
-    for (let i = 1; i < sortedDates.length; i++) {
-
-        const gap = daysBetween(sortedDates[i - 1], sortedDates[i]);
-
-        if (gap === 1) {
-            run += 1;
-        } else if (gap > 1) {
-            run = 1;
-        }
-
-        if (run > best) {
-            best = run;
-        }
-
-    }
-
-    /* ---------- CURRENT STREAK ---------- */
-
-    const mostRecent = sortedDates[sortedDates.length - 1];
-    const gapFromToday = daysBetween(mostRecent, todayString());
-
-    let current = 0;
-
-    if (gapFromToday <= 1) {
-
-        current = 1;
-
-        for (let i = sortedDates.length - 1; i > 0; i--) {
-
-            const gap = daysBetween(sortedDates[i - 1], sortedDates[i]);
-
-            if (gap === 1) {
-                current += 1;
-            } else {
-                break;
-            }
-
-        }
-
-    }
-
-    return { current, best };
-
-}
-
-
-/* =========================================
-   DATA ACCESS (localStorage for now,
-   will become real API calls later)
-========================================= */
-
-function loadActivities() {
-    const raw = localStorage.getItem("persistActivities");
-    return raw ? JSON.parse(raw) : [];
-}
-
-function saveActivities(activities) {
-    localStorage.setItem("persistActivities", JSON.stringify(activities));
-}
-
-function loadUser() {
-    const raw = localStorage.getItem("persistUser");
-    return raw ? JSON.parse(raw) : null;
 }
 
 
@@ -209,12 +106,6 @@ function renderActivities() {
 
 /* =========================================
    RENDER: TOP STAT CARDS
-   - Current Streak card = the activity with
-     the highest *current* streak, named.
-   - Best Streak card = the activity with the
-     highest *best* streak ever, named.
-   - Today's Progress = how many of today's
-     activities are actually done, out of total.
 ========================================= */
 
 function renderStats() {
@@ -256,20 +147,11 @@ function renderStats() {
 
     });
 
-    currentStreakEl.textContent =
-        `${topCurrent} Day${topCurrent === 1 ? "" : "s"}`;
-
-    bestStreakEl.textContent =
-        `${topBest} Day${topBest === 1 ? "" : "s"}`;
-
-    currentStreakActivityEl.textContent =
-        topCurrent > 0 ? topCurrentName : "No active streak";
-
-    bestStreakActivityEl.textContent =
-        topBest > 0 ? topBestName : "No streak yet";
-
-    todayProgressEl.textContent =
-        `${completedToday}/${activities.length}`;
+    currentStreakEl.textContent = `${topCurrent} Day${topCurrent === 1 ? "" : "s"}`;
+    bestStreakEl.textContent = `${topBest} Day${topBest === 1 ? "" : "s"}`;
+    currentStreakActivityEl.textContent = topCurrent > 0 ? topCurrentName : "No active streak";
+    bestStreakActivityEl.textContent = topBest > 0 ? topBestName : "No streak yet";
+    todayProgressEl.textContent = `${completedToday}/${activities.length}`;
 
 }
 
