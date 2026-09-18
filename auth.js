@@ -4,6 +4,18 @@
 
 
 /* =========================================
+   ALREADY LOGGED IN?
+   If a session already exists, there's no
+   reason to show this page — send them
+   straight to the dashboard.
+========================================= */
+
+if (localStorage.getItem("persistLoggedIn") === "true") {
+    window.location.href = "dashboard.html";
+}
+
+
+/* =========================================
    AUTH BOX (unchanged UI toggle logic)
 ========================================= */
 
