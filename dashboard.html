@@ -4,14 +4,9 @@
 <head>
 
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PERSIST - Dashboard</title>
-
-    <link rel="stylesheet"
-          href="dashboard.css">
+    <link rel="stylesheet" href="dashboard.css">
 
 </head>
 
@@ -25,30 +20,13 @@
 
     <nav class="navbar">
 
-        <div class="logo">
-            PERSIST
-        </div>
-
+        <div class="logo">PERSIST</div>
 
         <div class="nav-links">
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="dashboard.html"
-               class="active">
-                Dashboard
-            </a>
-
-            <a href="profile.html">
-                Profile
-            </a>
-
-            <a href="about.html">
-                About
-            </a>
-
+            <a href="index.html">Home</a>
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="profile.html">Profile</a>
+            <a href="about.html">About</a>
         </div>
 
     </nav>
@@ -67,21 +45,14 @@
         <!-- ============================= -->
 
         <section class="welcome-section">
-
-            <h1>
-                Good morning 👋
-            </h1>
-
-            <p>
-                Let's keep the streak going.
-            </p>
-
+            <h1>Good morning 👋</h1>
+            <p>Let's keep the streak going.</p>
         </section>
 
 
 
         <!-- ============================= -->
-        <!-- Streak Cards -->
+        <!-- Stat Cards -->
         <!-- ============================= -->
 
         <section class="stats-section">
@@ -89,42 +60,38 @@
 
             <div class="stat-card">
 
-                <div class="stat-icon">
-                    🔥
-                </div>
+                <div class="stat-icon">🔥</div>
 
                 <div>
-
-                    <p class="stat-title">
-                        Current Streak
-                    </p>
-
-                    <h2 id="currentStreak">
-                        12 Days
-                    </h2>
-
+                    <p class="stat-title">Current Streak</p>
+                    <h2 id="currentStreak">0 Days</h2>
+                    <p class="stat-subtitle" id="currentStreakActivity">No activities yet</p>
                 </div>
 
             </div>
 
 
+            <div class="stat-card">
+
+                <div class="stat-icon">🏆</div>
+
+                <div>
+                    <p class="stat-title">Best Streak</p>
+                    <h2 id="bestStreak">0 Days</h2>
+                    <p class="stat-subtitle" id="bestStreakActivity">No activities yet</p>
+                </div>
+
+            </div>
+
 
             <div class="stat-card">
 
-                <div class="stat-icon">
-                    🏆
-                </div>
+                <div class="stat-icon">✅</div>
 
                 <div>
-
-                    <p class="stat-title">
-                        Best Streak
-                    </p>
-
-                    <h2 id="bestStreak">
-                        18 Days
-                    </h2>
-
+                    <p class="stat-title">Today's Progress</p>
+                    <h2 id="todayProgress">0/0</h2>
+                    <p class="stat-subtitle">Activities completed today</p>
                 </div>
 
             </div>
@@ -140,201 +107,27 @@
 
         <section class="activities-section">
 
-
             <div class="section-header">
 
                 <div>
-
-                    <h2>
-                        Today's Activities
-                    </h2>
-
-                    <p>
-                        Stay consistent with your goals.
-                    </p>
-
+                    <h2>Today's Activities</h2>
+                    <p>Stay consistent with your goals.</p>
                 </div>
 
-
-                <button
-                    class="add-button"
-                    id="addActivityButton"
-                    type="button">
-
+                <button class="add-button" id="addActivityButton" type="button">
                     + Add Activity
-
                 </button>
 
             </div>
 
 
-
-            <!-- ============================= -->
-            <!-- Activity List -->
-            <!-- ============================= -->
-
-            <div
-                class="activity-list"
-                id="activityList">
-
-
-                <!-- ============================= -->
-                <!-- DSA Practice -->
-                <!-- ============================= -->
-
-                <div class="activity-card">
-
-                    <div class="activity-left">
-
-                        <button
-                            class="check-button completed"
-                            type="button"
-                            aria-label="Complete DSA Practice">
-
-                            ✓
-
-                        </button>
-
-
-                        <div>
-
-                            <h3>
-                                DSA Practice
-                            </h3>
-
-                            <p>
-                                Solve today's coding problem
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="activity-right">
-
-                        <div class="activity-streak">
-                            🔥 12 days
-                        </div>
-
-                        <button
-                            class="remove-button"
-                            type="button">
-
-                            Remove
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- ============================= -->
-                <!-- Homework -->
-                <!-- ============================= -->
-
-                <div class="activity-card">
-
-                    <div class="activity-left">
-
-                        <button
-                            class="check-button completed"
-                            type="button"
-                            aria-label="Complete Homework">
-
-                            ✓
-
-                        </button>
-
-
-                        <div>
-
-                            <h3>
-                                Homework
-                            </h3>
-
-                            <p>
-                                Complete today's assignments
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="activity-right">
-
-                        <div class="activity-streak">
-                            🔥 7 days
-                        </div>
-
-                        <button
-                            class="remove-button"
-                            type="button">
-
-                            Remove
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- ============================= -->
-                <!-- Workout -->
-                <!-- ============================= -->
-
-                <div class="activity-card">
-
-                    <div class="activity-left">
-
-                        <button
-                            class="check-button"
-                            type="button"
-                            aria-label="Complete Workout">
-
-                        </button>
-
-
-                        <div>
-
-                            <h3>
-                                Workout
-                            </h3>
-
-                            <p>
-                                Complete today's workout
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="activity-right">
-
-                        <div class="activity-streak">
-                            🔥 4 days
-                        </div>
-
-                        <button
-                            class="remove-button"
-                            type="button">
-
-                            Remove
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-            </div>
+            <!--
+                Activity cards are rendered entirely by dashboard.js
+                from persistActivities in localStorage.
+                This container starts empty on purpose.
+            -->
+
+            <div class="activity-list" id="activityList"></div>
 
         </section>
 
@@ -346,141 +139,23 @@
 
         <section class="consistency-section">
 
-
             <div class="section-header">
-
                 <div>
-
-                    <h2>
-                        Your Consistency
-                    </h2>
-
-                    <p>
-                        Your activity over the past week.
-                    </p>
-
+                    <h2>Your Consistency</h2>
+                    <p>Your activity over the past week.</p>
                 </div>
-
             </div>
 
 
-
-            <!-- ============================= -->
-            <!-- Week -->
-            <!-- ============================= -->
-
             <div class="week-container">
 
-
-                <!-- Monday -->
-
-                <div class="day">
-
-                    <span>
-                        Mon
-                    </span>
-
-                    <div class="day-box completed-day">
-                        ✓
-                    </div>
-
-                </div>
-
-
-
-                <!-- Tuesday -->
-
-                <div class="day">
-
-                    <span>
-                        Tue
-                    </span>
-
-                    <div class="day-box completed-day">
-                        ✓
-                    </div>
-
-                </div>
-
-
-
-                <!-- Wednesday -->
-
-                <div class="day">
-
-                    <span>
-                        Wed
-                    </span>
-
-                    <div class="day-box completed-day">
-                        ✓
-                    </div>
-
-                </div>
-
-
-
-                <!-- Thursday -->
-
-                <div class="day">
-
-                    <span>
-                        Thu
-                    </span>
-
-                    <div class="day-box completed-day">
-                        ✓
-                    </div>
-
-                </div>
-
-
-
-                <!-- Friday -->
-
-                <div class="day">
-
-                    <span>
-                        Fri
-                    </span>
-
-                    <div class="day-box">
-                    </div>
-
-                </div>
-
-
-
-                <!-- Saturday -->
-
-                <div class="day">
-
-                    <span>
-                        Sat
-                    </span>
-
-                    <div class="day-box completed-day">
-                        ✓
-                    </div>
-
-                </div>
-
-
-
-                <!-- Sunday -->
-
-                <div class="day">
-
-                    <span>
-                        Sun
-                    </span>
-
-                    <div class="day-box completed-day">
-                        ✓
-                    </div>
-
-                </div>
-
+                <div class="day"><span>Mon</span><div class="day-box"></div></div>
+                <div class="day"><span>Tue</span><div class="day-box"></div></div>
+                <div class="day"><span>Wed</span><div class="day-box"></div></div>
+                <div class="day"><span>Thu</span><div class="day-box"></div></div>
+                <div class="day"><span>Fri</span><div class="day-box"></div></div>
+                <div class="day"><span>Sat</span><div class="day-box"></div></div>
+                <div class="day"><span>Sun</span><div class="day-box"></div></div>
 
             </div>
 
@@ -489,11 +164,6 @@
 
     </main>
 
-
-
-    <!-- ============================= -->
-    <!-- Dashboard JavaScript -->
-    <!-- ============================= -->
 
     <script src="dashboard.js"></script>
 

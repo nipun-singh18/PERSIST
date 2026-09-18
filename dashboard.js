@@ -18,26 +18,15 @@ if (localStorage.getItem("persistLoggedIn") !== "true") {
    DATE HELPERS
 ========================================= */
 
-/*
-   Returns today's date as "YYYY-MM-DD",
-   which is what we store in `completions`.
-*/
 function todayString() {
     return new Date().toISOString().split("T")[0];
 }
 
-/*
-   "YYYY-MM-DD" -> Date object at midnight,
-   so day-difference math is exact.
-*/
 function parseDate(dateStr) {
     const [year, month, day] = dateStr.split("-").map(Number);
     return new Date(year, month - 1, day);
 }
 
-/*
-   Whole number of days between two date strings.
-*/
 function daysBetween(dateStrA, dateStrB) {
     const msPerDay = 1000 * 60 * 60 * 24;
     const a = parseDate(dateStrA);
@@ -57,10 +46,6 @@ function calculateStreaks(completions) {
         return { current: 0, best: 0 };
     }
 
-    /*
-       Sort ascending and remove duplicates,
-       so we can walk day-by-day safely.
-    */
     const sortedDates =
         [...new Set(completions)].sort();
 
@@ -74,13 +59,10 @@ function calculateStreaks(completions) {
         const gap = daysBetween(sortedDates[i - 1], sortedDates[i]);
 
         if (gap === 1) {
-            // consecutive day, extend the run
             run += 1;
         } else if (gap > 1) {
-            // missed at least one day, run resets
             run = 1;
         }
-        // gap === 0 can't happen, duplicates were removed
 
         if (run > best) {
             best = run;
@@ -97,9 +79,6 @@ function calculateStreaks(completions) {
 
     if (gapFromToday <= 1) {
 
-        // Most recent completion was today or yesterday,
-        // so the streak is still "alive" — count backward.
-
         current = 1;
 
         for (let i = sortedDates.length - 1; i > 0; i--) {
@@ -115,7 +94,6 @@ function calculateStreaks(completions) {
         }
 
     }
-    // else: last completion was 2+ days ago, streak is broken -> 0
 
     return { current, best };
 
@@ -148,8 +126,12 @@ function loadUser() {
 
 const activityList = document.getElementById("activityList");
 const addActivityButton = document.getElementById("addActivityButton");
+
 const currentStreakEl = document.getElementById("currentStreak");
 const bestStreakEl = document.getElementById("bestStreak");
+const currentStreakActivityEl = document.getElementById("currentStreakActivity");
+const bestStreakActivityEl = document.getElementById("bestStreakActivity");
+const todayProgressEl = document.getElementById("todayProgress");
 
 
 /* =========================================
@@ -179,7 +161,7 @@ function createActivityCard(activity) {
             </div>
         </div>
         <div class="activity-right">
-            <div class="activity-streak">🔥 ${current} days</div>
+            <div class="activity-streak">🔥 ${current} current &middot; 🏆 ${best} best</div>
             <button class="remove-button" type="button">Remove</button>
         </div>
     `;
@@ -227,33 +209,73 @@ function renderActivities() {
 
 /* =========================================
    RENDER: TOP STAT CARDS
-   Shows the activity you're most consistent
-   with right now.
+   - Current Streak card = the activity with
+     the highest *current* streak, named.
+   - Best Streak card = the activity with the
+     highest *best* streak ever, named.
+   - Today's Progress = how many of today's
+     activities are actually done, out of total.
 ========================================= */
 
 function renderStats() {
 
     const activities = loadActivities();
 
-    let topCurrent = 0;
-    let topBest = 0;
+    if (activities.length === 0) {
+        currentStreakEl.textContent = "0 Days";
+        bestStreakEl.textContent = "0 Days";
+        currentStreakActivityEl.textContent = "No activities yet";
+        bestStreakActivityEl.textContent = "No activities yet";
+        todayProgressEl.textContent = "0/0";
+        return;
+    }
+
+    let topCurrent = -1;
+    let topCurrentName = "";
+    let topBest = -1;
+    let topBestName = "";
+    let completedToday = 0;
 
     activities.forEach(function (activity) {
+
         const { current, best } = calculateStreaks(activity.completions);
-        if (current > topCurrent) topCurrent = current;
-        if (best > topBest) topBest = best;
+
+        if (current > topCurrent) {
+            topCurrent = current;
+            topCurrentName = activity.name;
+        }
+
+        if (best > topBest) {
+            topBest = best;
+            topBestName = activity.name;
+        }
+
+        if (activity.completions.includes(todayString())) {
+            completedToday += 1;
+        }
+
     });
 
-    currentStreakEl.textContent = `${topCurrent} Day${topCurrent === 1 ? "" : "s"}`;
-    bestStreakEl.textContent = `${topBest} Day${topBest === 1 ? "" : "s"}`;
+    currentStreakEl.textContent =
+        `${topCurrent} Day${topCurrent === 1 ? "" : "s"}`;
+
+    bestStreakEl.textContent =
+        `${topBest} Day${topBest === 1 ? "" : "s"}`;
+
+    currentStreakActivityEl.textContent =
+        topCurrent > 0 ? topCurrentName : "No active streak";
+
+    bestStreakActivityEl.textContent =
+        topBest > 0 ? topBestName : "No streak yet";
+
+    todayProgressEl.textContent =
+        `${completedToday}/${activities.length}`;
 
 }
 
 
 /* =========================================
    RENDER: WEEKLY CONSISTENCY GRID
-   A day counts as "consistent" if the user
-   completed at least one activity that day.
 ========================================= */
 
 function renderWeek() {
@@ -261,9 +283,8 @@ function renderWeek() {
     const activities = loadActivities();
     const dayBoxes = document.querySelectorAll(".day-box");
 
-    // Find this week's Monday
     const now = new Date();
-    const dayOfWeek = now.getDay(); // 0 = Sunday
+    const dayOfWeek = now.getDay();
     const diffToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
 
     const monday = new Date(now);
