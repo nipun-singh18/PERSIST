@@ -12,55 +12,36 @@ The main idea behind PERSIST is simple:
 
 Users can create activities they want to stay consistent with, mark them as completed each day, and track their current and best streaks.
 
-## ✨ Planned Features
+## ✨ Current Status: Frontend Functional (Temporary Storage)
 
-- User registration and login
-- Create and manage activities
-- Example activities for new users
-- Mark activities as completed
-- Track current streaks
-- Track best streaks
-- View completion history
-- Personal dashboard
+The frontend is fully functional using `localStorage` as a temporary stand-in for a real backend. This includes:
+
+- User signup and login (name, email, password stored client-side)
+- Route protection (dashboard/profile redirect to login if not authenticated)
+- Creating, completing, and removing activities
+- Real streak calculation — current streak and best streak, computed from actual completion dates, not hardcoded
+- Weekly consistency view driven by real completion history
+- Dashboard and Profile pages stay in sync, sharing one streak-calculation module (`streaks.js`)
+- Homepage adapts based on login state
+
+**Known limitation:** since everything currently lives in the browser's `localStorage`, data does not persist across devices or browsers, and there is no real security (passwords are stored in plain text client-side). This is intentional for this stage of development — the next milestone replaces this with a real Spring Boot + MySQL backend.
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- HTML
-- CSS
-- JavaScript
-- React
+### Frontend (current)
+- HTML, CSS, JavaScript
+- React (planned rewrite)
 
-### Backend
-- Java
-- Spring Boot
-- REST APIs
+### Backend (planned)
+- Java, Spring Boot
+- REST APIs for auth, activities, and completions
 
-### Database
+### Database (planned)
 - MySQL
-- SQL
+- Tables: Users, Activities, Completions
 - JPA / Hibernate
 
 ### Tools
-- Git
-- GitHub
-- Postman
+- Git, GitHub, Postman
 
-## 🏗️ Project Status
-
-🚧 PERSIST is currently under development.
-
-The project is being built from scratch with a focus on understanding the complete full-stack development process, from frontend design and database creation to backend development and deployment.
-
-## 🚀 Future Goals
-
-- Build a responsive user interface
-- Implement the complete backend
-- Connect the application to a MySQL database
-- Implement streak calculation
-- Add authentication
-- Deploy PERSIST as a live web application
-
----
-
-**PERSIST — Show up. Stay consistent. Keep progressing.**
+## 🏗️ Architecture
