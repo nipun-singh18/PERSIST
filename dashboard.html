@@ -22,11 +22,19 @@
 
         <div class="logo">PERSIST</div>
 
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="dashboard.html" class="active">Dashboard</a>
-            <a href="profile.html">Profile</a>
-            <a href="about.html">About</a>
+        <div class="nav-right">
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="profile.html">Profile</a>
+                <a href="about.html">About</a>
+            </div>
+
+            <button id="navLogoutButton" class="nav-logout-button" type="button">
+                Logout
+            </button>
+
         </div>
 
     </nav>
@@ -140,10 +148,6 @@
     </main>
 
 
-    <!--
-        streaks.js MUST load before dashboard.js —
-        dashboard.js depends on the functions it defines.
-    -->
     <script src="streaks.js"></script>
     <script src="dashboard.js"></script>
 

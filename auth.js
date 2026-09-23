@@ -5,9 +5,6 @@
 
 /* =========================================
    ALREADY LOGGED IN?
-   If a session already exists, there's no
-   reason to show this page — send them
-   straight to the dashboard.
 ========================================= */
 
 if (localStorage.getItem("persistLoggedIn") === "true") {
@@ -47,8 +44,6 @@ showSignup.addEventListener("click", function () {
 
 /* =========================================
    DEFAULT ACTIVITIES FOR NEW USERS
-   (gives a new signup something to see
-   on the dashboard instead of an empty list)
 ========================================= */
 
 function createDefaultActivities() {
@@ -94,12 +89,16 @@ signupForm.addEventListener("submit", function (event) {
     }
 
     /*
-       TEMPORARY AUTHENTICATION
-       Backend is not connected yet, so we store
-       the user directly in localStorage.
-       This will be replaced by a real Spring Boot
-       /api/auth/register endpoint later.
+       Minimum password length. This is a very
+       shallow check — real validation (and real
+       security, like hashing) will happen on the
+       backend later. This is just a UX guard.
     */
+
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return;
+    }
 
     const existingUserRaw = localStorage.getItem("persistUser");
 
@@ -115,11 +114,6 @@ signupForm.addEventListener("submit", function (event) {
 
     localStorage.setItem("persistUser", JSON.stringify(newUser));
     localStorage.setItem("persistLoggedIn", "true");
-
-    /*
-       Only seed default activities if none exist yet,
-       so we don't wipe an existing user's data.
-    */
 
     if (!localStorage.getItem("persistActivities")) {
         localStorage.setItem(

@@ -23,6 +23,7 @@ if (localStorage.getItem("persistLoggedIn") !== "true") {
 
 const activityList = document.getElementById("activityList");
 const addActivityButton = document.getElementById("addActivityButton");
+const navLogoutButton = document.getElementById("navLogoutButton");
 
 const currentStreakEl = document.getElementById("currentStreak");
 const bestStreakEl = document.getElementById("bestStreak");
@@ -255,6 +256,21 @@ function addActivity() {
     renderAll();
 
 }
+
+
+/* =========================================
+   LOGOUT (from navbar)
+========================================= */
+
+navLogoutButton.addEventListener("click", function () {
+
+    const confirmLogout = confirm("Are you sure you want to logout?");
+    if (!confirmLogout) return;
+
+    localStorage.removeItem("persistLoggedIn");
+    window.location.href = "index.html";
+
+});
 
 
 /* =========================================

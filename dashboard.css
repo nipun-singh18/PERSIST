@@ -42,6 +42,12 @@ body {
     color: #7B1E3A;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
 .nav-links {
     display: flex;
     gap: 30px;
@@ -61,6 +67,27 @@ body {
 
 .nav-links a.active {
     color: #7B1E3A;
+}
+
+.nav-logout-button {
+    border: 1px solid #7B1E3A;
+    background: white;
+    color: #7B1E3A;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.nav-logout-button:hover {
+    background: #7B1E3A;
+    color: white;
+}
+
+.nav-logout-button:active {
+    transform: scale(0.97);
 }
 
 
@@ -395,6 +422,16 @@ body {
 
     .navbar {
         padding: 0 5%;
+        flex-wrap: wrap;
+        height: auto;
+        gap: 10px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .nav-right {
+        gap: 12px;
+        flex-wrap: wrap;
     }
 
     .nav-links {
@@ -403,6 +440,11 @@ body {
 
     .nav-links a {
         font-size: 12px;
+    }
+
+    .nav-logout-button {
+        font-size: 12px;
+        padding: 6px 12px;
     }
 
     .dashboard-container {
