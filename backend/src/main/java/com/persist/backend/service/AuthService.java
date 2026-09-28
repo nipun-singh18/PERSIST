@@ -18,10 +18,7 @@ public class AuthService {
 
     public UserResponse register(RegisterRequest request) {
 
-        boolean emailTaken = userRepository.findAll().stream()
-                .anyMatch(u -> u.getEmail().equalsIgnoreCase(request.getEmail()));
-
-        if (emailTaken) {
+        if (userRepository.findByEmailIgnoreCase(request.getEmail()).isPresent()) {
             throw new IllegalArgumentException("An account with this email already exists.");
         }
 
@@ -37,9 +34,7 @@ public class AuthService {
 
     public UserResponse login(LoginRequest request) {
 
-        User user = userRepository.findAll().stream()
-                .filter(u -> u.getEmail().equalsIgnoreCase(request.getEmail()))
-                .findFirst()
+        User user = userRepository.findByEmailIgnoreCase(request.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("No account found with this email."));
 
         if (!user.getPassword().equals(request.getPassword())) {
