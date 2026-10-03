@@ -3,6 +3,7 @@ package com.persist.backend.controller;
 import com.persist.backend.dto.ActivityRequest;
 import com.persist.backend.dto.ActivityResponse;
 import com.persist.backend.service.ActivityService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class ActivityController {
     }
 
     @PostMapping
-    public ActivityResponse createActivity(@RequestParam Long userId, @RequestBody ActivityRequest request) {
+    public ActivityResponse createActivity(@RequestParam Long userId, @Valid @RequestBody ActivityRequest request) {
         return activityService.createActivity(userId, request);
     }
 

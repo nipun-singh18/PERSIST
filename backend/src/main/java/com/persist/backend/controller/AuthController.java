@@ -4,6 +4,7 @@ import com.persist.backend.dto.LoginRequest;
 import com.persist.backend.dto.RegisterRequest;
 import com.persist.backend.dto.UserResponse;
 import com.persist.backend.service.AuthService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,12 +18,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public UserResponse register(@RequestBody RegisterRequest request) {
+    public UserResponse register(@Valid @RequestBody RegisterRequest request) {
         return authService.register(request);
     }
 
     @PostMapping("/login")
-    public UserResponse login(@RequestBody LoginRequest request) {
+    public UserResponse login(@Valid @RequestBody LoginRequest request) {
         return authService.login(request);
     }
 }
