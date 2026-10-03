@@ -45,3 +45,24 @@ The frontend is fully functional using `localStorage` as a temporary stand-in fo
 - Git, GitHub, Postman
 
 ## 🏗️ Architecture
+
+## 🔌 Backend API (Live)
+
+The Spring Boot backend now exposes a working REST API backed by MySQL:
+
+**Auth**
+- `POST /api/auth/register` — create account
+- `POST /api/auth/login` — authenticate
+
+**Activities**
+- `POST /api/activities?userId={id}` — create an activity
+- `GET /api/activities?userId={id}` — list activities, each with computed current/best streak and completion history
+- `DELETE /api/activities/{id}` — remove an activity
+
+**Completions**
+- `POST /api/activities/{activityId}/completions/toggle` — mark/unmark today (or a given date) as complete
+
+**Dashboard**
+- `GET /api/dashboard/summary?userId={id}` — aggregated stats: top current streak, top best streak, today's completion count
+
+Streak calculation is handled server-side by `StreakService`, a Java port of the same algorithm originally prototyped in the frontend's `streaks.js`.
