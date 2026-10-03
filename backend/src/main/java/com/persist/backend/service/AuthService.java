@@ -5,6 +5,7 @@ import com.persist.backend.dto.RegisterRequest;
 import com.persist.backend.dto.UserResponse;
 import com.persist.backend.model.User;
 import com.persist.backend.repository.UserRepository;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,7 +26,7 @@ public class AuthService {
         User user = new User();
         user.setName(request.getName());
         user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
+        user.setPassword(BCrypt.hashpw(request.getPassword(), BCrypt.gensalt()));
 
         User saved = userRepository.save(user);
 
@@ -37,7 +38,7 @@ public class AuthService {
         User user = userRepository.findByEmailIgnoreCase(request.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("No account found with this email."));
 
-        if (!user.getPassword().equals(request.getPassword())) {
+        if (!BCrypt.checkpw(request.getPassword(), user.getPassword())) {
             throw new IllegalArgumentException("Incorrect password.");
         }
 
