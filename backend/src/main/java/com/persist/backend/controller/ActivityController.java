@@ -20,12 +20,8 @@ public class ActivityController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createActivity(@RequestParam Long userId, @RequestBody ActivityRequest request) {
-        try {
-            return ResponseEntity.ok(activityService.createActivity(userId, request));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ActivityResponse createActivity(@RequestParam Long userId, @RequestBody ActivityRequest request) {
+        return activityService.createActivity(userId, request);
     }
 
     @GetMapping
