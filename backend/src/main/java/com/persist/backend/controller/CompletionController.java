@@ -18,10 +18,11 @@ public class CompletionController {
 
     @PostMapping("/toggle")
     public Map<String, Object> toggle(@PathVariable Long activityId,
+                                       @RequestParam Long userId,
                                        @RequestParam(required = false) String date) {
 
         LocalDate targetDate = (date != null) ? LocalDate.parse(date) : LocalDate.now();
-        boolean completedNow = completionService.toggleCompletion(activityId, targetDate);
+        boolean completedNow = completionService.toggleCompletion(userId, activityId, targetDate);
 
         return Map.of("completed", completedNow, "date", targetDate.toString());
     }

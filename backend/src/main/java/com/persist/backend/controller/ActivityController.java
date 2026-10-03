@@ -30,13 +30,14 @@ public class ActivityController {
     }
 
     @PutMapping("/{id}")
-    public ActivityResponse updateActivity(@PathVariable Long id, @Valid @RequestBody ActivityRequest request) {
-        return activityService.updateActivity(id, request);
+    public ActivityResponse updateActivity(@PathVariable Long id, @RequestParam Long userId,
+                                            @Valid @RequestBody ActivityRequest request) {
+        return activityService.updateActivity(userId, id, request);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteActivity(@PathVariable Long id) {
-        activityService.deleteActivity(id);
+    public ResponseEntity<Void> deleteActivity(@PathVariable Long id, @RequestParam Long userId) {
+        activityService.deleteActivity(userId, id);
         return ResponseEntity.noContent().build();
     }
 }

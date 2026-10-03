@@ -44,11 +44,9 @@ public class ActivityService {
         return toResponse(activityRepository.save(activity));
     }
 
-    public ActivityResponse updateActivity(Long activityId, ActivityRequest request) {
+    public ActivityResponse updateActivity(Long userId, Long activityId, ActivityRequest request) {
 
-        Activity activity = activityRepository.findById(activityId)
-                .orElseThrow(() -> new IllegalArgumentException("Activity not found."));
-
+        Activity activity = getOwnedActivity(userId, activityId);
         activity.setName(request.getName());
         activity.setDescription(request.getDescription());
 
@@ -61,8 +59,27 @@ public class ActivityService {
                 .toList();
     }
 
-    public void deleteActivity(Long activityId) {
-        activityRepository.deleteById(activityId);
+    public void deleteActivity(Long userId, Long activityId) {
+        Activity activity = getOwnedActivity(userId, activityId);
+        activityRepository.delete(activity);
+    }
+
+    /**
+     * Fetches an activity and verifies it actually belongs to the given
+     * user, preventing one user from editing/deleting another's data just
+     * by guessing an activity id. This is a stand-in for proper auth
+     * (JWT), which replaces the userId parameter entirely later.
+     */
+    public Activity getOwnedActivity(Long userId, Long activityId) {
+
+        Activity activity = activityRepository.findById(activityId)
+                .orElseThrow(() -> new IllegalArgumentException("Activity not found."));
+
+        if (!activity.getUser().getId().equals(userId)) {
+            throw new IllegalArgumentException("This activity does not belong to you.");
+        }
+
+        return activity;
     }
 
     private ActivityResponse toResponse(Activity activity) {

@@ -2,7 +2,6 @@ package com.persist.backend.service;
 
 import com.persist.backend.model.Activity;
 import com.persist.backend.model.Completion;
-import com.persist.backend.repository.ActivityRepository;
 import com.persist.backend.repository.CompletionRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,17 +12,16 @@ import java.util.Optional;
 public class CompletionService {
 
     private final CompletionRepository completionRepository;
-    private final ActivityRepository activityRepository;
+    private final ActivityService activityService;
 
-    public CompletionService(CompletionRepository completionRepository, ActivityRepository activityRepository) {
+    public CompletionService(CompletionRepository completionRepository, ActivityService activityService) {
         this.completionRepository = completionRepository;
-        this.activityRepository = activityRepository;
+        this.activityService = activityService;
     }
 
-    public boolean toggleCompletion(Long activityId, LocalDate date) {
+    public boolean toggleCompletion(Long userId, Long activityId, LocalDate date) {
 
-        Activity activity = activityRepository.findById(activityId)
-                .orElseThrow(() -> new IllegalArgumentException("Activity not found."));
+        Activity activity = activityService.getOwnedActivity(userId, activityId);
 
         Optional<Completion> existing = completionRepository.findByActivityIdAndCompletionDate(activityId, date);
 
