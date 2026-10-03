@@ -8,7 +8,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/activities/{activityId}/completions")
-@CrossOrigin(origins = "*")
 public class CompletionController {
 
     private final CompletionService completionService;
