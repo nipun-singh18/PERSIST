@@ -2,67 +2,64 @@
 
 ### Personal Consistency & Progress Tracker
 
-PERSIST is a full-stack web application designed to help users build consistency, track daily activities, maintain streaks, and visualize their progress over time.
+PERSIST is a full-stack web application for building consistency, tracking daily activities, maintaining streaks, and visualizing progress over time.
 
-## 🎯 Purpose
+## 🏗️ Architecture
+Frontend (HTML/CSS/JS) → REST API (Spring Boot) → MySQL
 
-The main idea behind PERSIST is simple:
 
-> Consistency is built one day at a time.
+- **`/frontend`** — HTML, CSS, vanilla JavaScript. Currently using localStorage; will be migrated to call the real API below.
+- **`/backend`** — Java Spring Boot REST API with a MySQL database via JPA/Hibernate.
 
-Users can create activities they want to stay consistent with, mark them as completed each day, and track their current and best streaks.
+## ✅ Backend Status: Functional API, Not Yet Connected to Frontend
 
-## ✨ Current Status: Frontend Functional (Temporary Storage)
+The backend is a real, tested REST API with its own database, independent of the frontend's current localStorage implementation.
 
-The frontend is fully functional using `localStorage` as a temporary stand-in for a real backend. This includes:
+**Auth**
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- Passwords hashed with BCrypt.
 
-- User signup and login (name, email, password stored client-side)
-- Route protection (dashboard/profile redirect to login if not authenticated)
-- Creating, completing, and removing activities
-- Real streak calculation — current streak and best streak, computed from actual completion dates, not hardcoded
-- Weekly consistency view driven by real completion history
-- Dashboard and Profile pages stay in sync, sharing one streak-calculation module (`streaks.js`)
-- Homepage adapts based on login state
+**Users**
+- `GET /api/users/{id}`
 
-**Known limitation:** since everything currently lives in the browser's `localStorage`, data does not persist across devices or browsers, and there is no real security (passwords are stored in plain text client-side). This is intentional for this stage of development — the next milestone replaces this with a real Spring Boot + MySQL backend.
+**Activities** (ownership-checked — a user can only modify their own)
+- `POST /api/activities?userId={id}`
+- `GET /api/activities?userId={id}` — includes computed current/best streak and completion history
+- `PUT /api/activities/{id}?userId={id}`
+- `DELETE /api/activities/{id}?userId={id}`
+
+**Completions**
+- `POST /api/activities/{activityId}/completions/toggle?userId={id}`
+
+**Dashboard**
+- `GET /api/dashboard/summary?userId={id}`
+- `GET /api/dashboard/week?userId={id}`
+
+**Health**
+- `GET /api/health`
+
+Streak calculation (`StreakService`) is unit tested — see `backend/src/test`.
 
 ## 🛠️ Tech Stack
 
-### Frontend (current)
-- HTML, CSS, JavaScript
-- React (planned rewrite)
+**Frontend:** HTML, CSS, JavaScript (React planned)
+**Backend:** Java, Spring Boot, Spring Data JPA
+**Database:** MySQL
+**Tools:** Git, GitHub, Maven, curl/Postman for API testing
 
-### Backend (planned)
-- Java, Spring Boot
-- REST APIs for auth, activities, and completions
+## 🚀 Roadmap
 
-### Database (planned)
-- MySQL
-- Tables: Users, Activities, Completions
-- JPA / Hibernate
+- [x] Frontend UI (all pages, localStorage-based)
+- [x] Backend: entities, schema, repositories
+- [x] Backend: full REST API (auth, activities, completions, dashboard)
+- [x] Password hashing, input validation, ownership checks
+- [x] Unit tests for streak logic
+- [ ] Replace frontend localStorage calls with real API calls (fetch)
+- [ ] JWT-based authentication (replacing the current `userId` query param approach)
+- [ ] React rewrite of the frontend
+- [ ] Deployment (frontend + backend)
 
-### Tools
-- Git, GitHub, Postman
+---
 
-## 🏗️ Architecture
-
-## 🔌 Backend API (Live)
-
-The Spring Boot backend now exposes a working REST API backed by MySQL:
-
-**Auth**
-- `POST /api/auth/register` — create account
-- `POST /api/auth/login` — authenticate
-
-**Activities**
-- `POST /api/activities?userId={id}` — create an activity
-- `GET /api/activities?userId={id}` — list activities, each with computed current/best streak and completion history
-- `DELETE /api/activities/{id}` — remove an activity
-
-**Completions**
-- `POST /api/activities/{activityId}/completions/toggle` — mark/unmark today (or a given date) as complete
-
-**Dashboard**
-- `GET /api/dashboard/summary?userId={id}` — aggregated stats: top current streak, top best streak, today's completion count
-
-Streak calculation is handled server-side by `StreakService`, a Java port of the same algorithm originally prototyped in the frontend's `streaks.js`.
+**PERSIST — Show up. Stay consistent. Keep progressing.**
