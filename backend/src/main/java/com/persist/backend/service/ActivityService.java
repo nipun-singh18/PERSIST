@@ -41,9 +41,18 @@ public class ActivityService {
         activity.setName(request.getName());
         activity.setDescription(request.getDescription());
 
-        Activity saved = activityRepository.save(activity);
+        return toResponse(activityRepository.save(activity));
+    }
 
-        return toResponse(saved);
+    public ActivityResponse updateActivity(Long activityId, ActivityRequest request) {
+
+        Activity activity = activityRepository.findById(activityId)
+                .orElseThrow(() -> new IllegalArgumentException("Activity not found."));
+
+        activity.setName(request.getName());
+        activity.setDescription(request.getDescription());
+
+        return toResponse(activityRepository.save(activity));
     }
 
     public List<ActivityResponse> getActivitiesForUser(Long userId) {
@@ -63,16 +72,11 @@ public class ActivityService {
                 .toList();
 
         StreakService.StreakResult streaks = streakService.calculateStreaks(dates);
-
         List<String> dateStrings = dates.stream().map(LocalDate::toString).toList();
 
         return new ActivityResponse(
-                activity.getId(),
-                activity.getName(),
-                activity.getDescription(),
-                streaks.current(),
-                streaks.best(),
-                dateStrings
+                activity.getId(), activity.getName(), activity.getDescription(),
+                streaks.current(), streaks.best(), dateStrings
         );
     }
 }
